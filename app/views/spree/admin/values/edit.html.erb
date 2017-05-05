@@ -1,0 +1,12 @@
+<% admin_breadcrumb(link_to plural_resource_name(Spree::Product), spree.admin_products_path) %>
+<% admin_breadcrumb(link_to plural_resource_name(Spree::Value), spree.admin_values_path) %>
+<% admin_breadcrumb(@value.name) %>
+
+<%= render partial: 'spree/shared/error_messages', locals: { target: @value } %>
+
+<%= form_for [:admin, @value] do |f| %>
+  <fieldset class="no-border-top">
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

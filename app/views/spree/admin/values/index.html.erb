@@ -1,0 +1,88 @@
+<% admin_breadcrumb(link_to plural_resource_name(Spree::Product), spree.admin_products_path) %>
+<% admin_breadcrumb(plural_resource_name(Spree::Value)) %>
+
+<% content_for :page_actions do %>
+  <% if can?(:create, Spree::Value) %>
+    <li id="new_value_link">
+      <%= button_link_to Spree.t(:new_value), new_admin_value_url, { remote: true, id: 'new_value_link' } %>
+    </li>
+  <% end %>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= Spree.t(:search) %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_value_sidebar">
+
+    <%= search_form_for [:admin, @search] do |f| %>
+
+        <%- locals = {f: f} %>
+
+        <div data-hook="admin_value_index_search">
+          <div class="row">
+            <div class="col-6">
+              <div class="field">
+                <%= f.label :name_cont, Spree.t(:name) %>
+                <%= f.text_field :name_cont, size: 15 %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="form-buttons actions filter-actions" data-hook="admin_values_index_search_buttons">
+          <%= button Spree.t(:search) %>
+        </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="new_value_container"></div>
+
+<% if @values.any? %>
+<table class="index" id='listing_values' data-hook>
+  <colgroup>
+    <col style="width: 40%">
+    <col style="width: 45%">
+    <col style="width: 15%">
+  </colgroup>
+  <thead>
+    <tr data-hook="listing_values_header">
+      <th><%= Spree::Value.human_attribute_name(:name) %></th>
+      <!-- <th><%# Spree::Value.human_attribute_name(:presentation) %></th> -->
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @values.each do |value| %>
+      <tr id="<%= spree_dom_id value %>" data-hook="listing_values_row" class="<%= cycle('odd', 'even')%>">
+        <td style="padding-left:1em"><%= value.name %></td>
+        <!-- <td style="padding&#45;left:1em"><%# value.presentation %></td> -->
+        <td class="actions">
+          <% if can?(:update, value) %>
+            <%= link_to_edit(value, no_text: true) %>
+          <% end %>
+          <% if can?(:destroy, value) %>
+            <%= link_to_delete(value, no_text: true) %>
+          <% end %>
+          <%= link_to_with_icon 'globe',
+                                nil,
+                                spree.admin_translations_path('values', value.id),
+                                title: Spree.t(:'i18n.translations'), no_text: true %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="col-9 no-objects-found">
+    <%= render 'spree/admin/shared/no_objects_found',
+                 resource: Spree::Value,
+                 new_resource_url: new_object_url %>
+  </div>
+<% end %>
+
+<%= paginate @collection, theme: "solidus_admin" %>

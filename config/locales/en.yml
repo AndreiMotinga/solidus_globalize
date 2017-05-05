@@ -1,7 +1,14 @@
 en:
   spree:
+    admin:
+      tab:
+        locales: Locales
+        values: Property Values
     back_to_resource_list: Back to resource list
     globalize:
       locales_displayed_on_translation_forms: Locales displayed on translation forms
       no_translations_for_criteria: There are no translations for given criteria
       store_translations: Store Translations
+    i18n:
+      locales_displayed_on_frontend_select_box: Locales displayed on frontend select box
+    new_value: New Value
