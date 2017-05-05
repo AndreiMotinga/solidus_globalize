@@ -1,6 +1,3 @@
-module Spree
-  ProductProperty.class_eval do
-    translates :value, fallbacks_for_empty_translations: true
-    include SolidusGlobalize::Translatable
-  end
+Spree::ProductProperty.class_eval do
+  belongs_to :value, touch: true, class_name: 'Spree::Value', inverse_of: :product_properties
 end

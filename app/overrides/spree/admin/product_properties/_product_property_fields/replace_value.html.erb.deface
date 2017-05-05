@@ -1,0 +1,8 @@
+<!-- replace 'td.value' -->
+
+<td class='value'>
+  <%= f.select :value_id,
+               Spree::Value.all.map { |v| [v.name, v.id] } ,
+               { include_blank: true },
+               class: "js-value value-id" %>
+</td>

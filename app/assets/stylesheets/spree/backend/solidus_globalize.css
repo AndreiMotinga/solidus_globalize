@@ -15,3 +15,7 @@
 .no-padding-bottom {
 	padding-bottom: 0;
 }
+
+tr.product_property .value-id {
+  width: 100%;
+}

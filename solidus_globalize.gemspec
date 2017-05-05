@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'friendly_id-globalize'
   s.add_runtime_dependency 'globalize', '~> 5.0'
   s.add_runtime_dependency 'solidus_i18n', '~> 1.0'
+  s.add_runtime_dependency 'deface', '~> 1'
 
-  s.add_development_dependency 'awesome_print'
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'capybara', '~> 2.4'
   s.add_development_dependency 'capybara-screenshot'

@@ -32,6 +32,8 @@ $ ->
 
   $('#locale, #supported_locales_, #available_locales_').select2({placeholder: Spree.translations['please_choose_language']})
 
+  $('.js-value').select2()
+
   $('#locale').change ->
     display_locale_fields()
 

@@ -1,5 +1,6 @@
 # TODO: remove when merged https://github.com/solidusio/solidus/pull/1880
 # this is here to fix https://github.com/solidusio-contrib/solidus_globalize/issues/18
+# remove when merged https://github.com/solidusio/solidus/pull/1880
 module Spree
   TaxonsController.class_eval do
     def show
